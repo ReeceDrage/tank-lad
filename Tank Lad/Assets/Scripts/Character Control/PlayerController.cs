@@ -6,12 +6,14 @@ public class PlayerController : MonoBehaviour
 {
     // Inspector-visible variables
     [SerializeField] private float playerMoveSpeed = 2f;
+    [SerializeField] private GameObject shot;
 
     // Private variables
     private CharacterController2D controller;
     private float playerTurningSpeed = 10f;
     private GameObject tankBaseObject;
     private GameObject tankTurretObject;
+    private GameObject tankFiringPoint;
     private Camera camera;
 
     // Start is called before the first frame update
@@ -20,6 +22,7 @@ public class PlayerController : MonoBehaviour
         // Get references to tank child objects
         tankBaseObject = transform.Find("Tank Base").gameObject;
         tankTurretObject = transform.Find("Tank Turret").gameObject;
+        tankFiringPoint = tankTurretObject.transform.Find("Fire Point").gameObject;
 
         // Get component references
         controller = this.GetComponent<CharacterController2D>();
@@ -35,6 +38,8 @@ public class PlayerController : MonoBehaviour
 
         Vector3 mousePosition = GetMousePosition();
         RotateTankTurret(mousePosition);
+
+        CheckIfShooting();
     }
 
     private Vector3 GetAxisValues()
@@ -86,5 +91,14 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.Atan2(relativePosition.normalized.y, relativePosition.normalized.x) * Mathf.Rad2Deg - 90f;
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
         tankTurretObject.transform.rotation = Quaternion.Slerp(tankTurretObject.transform.rotation, q, Time.deltaTime * playerTurningSpeed);
+    }
+
+    private void CheckIfShooting()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameObject shotFired = Instantiate(shot, tankFiringPoint.transform.position, tankTurretObject.transform.rotation);
+            shotFired.GetComponent<CannonShot>().mask = this.gameObject.layer;
+        }
     }
 }
