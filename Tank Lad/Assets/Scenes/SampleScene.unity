@@ -988,7 +988,7 @@ GameObject:
   m_Component:
   - component: {fileID: 507155704}
   - component: {fileID: 507155703}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tank Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1150,7 +1150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 738497461}
   - component: {fileID: 738497462}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tank Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1167,7 +1167,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 980498689}
   m_Father: {fileID: 1714921114}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1219,6 +1220,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &980498688
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 980498689}
+  m_Layer: 9
+  m_Name: Fire Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &980498689
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980498688}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 738497461}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1589960927
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,11 +1305,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1714921114}
   - component: {fileID: 1714921115}
-  - component: {fileID: 1714921118}
+  - component: {fileID: 1714921119}
   - component: {fileID: 1714921116}
   - component: {fileID: 1714921117}
-  - component: {fileID: 1714921119}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1314,6 +1344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMoveSpeed: 2
+  shot: {fileID: 2517453191142070273, guid: 106272354b47cbe49a4a54981e287acc, type: 3}
 --- !u!61 &1714921116
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1361,18 +1392,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1714921118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1714921113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b73e9f2853d581468e7fed903544b68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1714921119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1902,7 +1921,7 @@ CompositeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
