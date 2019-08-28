@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
         adjustedMovement *= playerMoveSpeed;
         adjustedMovement *= Time.deltaTime;
 
-        transform.Translate(movement);
+        transform.Translate(adjustedMovement);
     }
 
     private void RotateTankBase(Vector3 movement)
