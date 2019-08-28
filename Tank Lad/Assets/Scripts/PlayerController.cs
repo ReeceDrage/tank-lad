@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private float playerTurningSpeed = 10f;
     private GameObject tankBaseObject;
     private GameObject tankTurretObject;
+    private Camera camera;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,9 @@ public class PlayerController : MonoBehaviour
         // Get references to tank child objects
         tankBaseObject = transform.Find("Tank Base").gameObject;
         tankTurretObject = transform.Find("Tank Turret").gameObject;
+
+        // Get reference to camera component of the main camera
+        camera = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -26,6 +30,9 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = GetAxisValues();
         MoveTank(movement);
         RotateTankBase(movement);
+
+        Vector3 mousePosition = GetMousePosition();
+        RotateTankTurret(mousePosition);
     }
 
     private Vector3 GetAxisValues()
@@ -57,5 +64,25 @@ public class PlayerController : MonoBehaviour
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
             tankBaseObject.transform.rotation = Quaternion.Slerp(tankBaseObject.transform.rotation, q, Time.deltaTime * playerTurningSpeed);
         }
+    }
+
+    private Vector3 GetMousePosition()
+    {
+        // Convert screen position to a coordinate in the game world
+        Vector3 worldPosition = camera.ScreenToWorldPoint(Input.mousePosition);
+        worldPosition.z = 0;
+
+        return worldPosition;
+    }
+
+    private void RotateTankTurret(Vector3 mousePosition)
+    {
+        // Calculate the vector between the tank position and the mouse position
+        Vector3 relativePosition = mousePosition - this.transform.position;
+
+        // Rotate the turret object to face the current mouse position
+        float angle = Mathf.Atan2(relativePosition.normalized.y, relativePosition.normalized.x) * Mathf.Rad2Deg - 90f;
+        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+        tankTurretObject.transform.rotation = Quaternion.Slerp(tankTurretObject.transform.rotation, q, Time.deltaTime * playerTurningSpeed);
     }
 }
