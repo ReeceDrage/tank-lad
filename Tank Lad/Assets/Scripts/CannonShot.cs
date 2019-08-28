@@ -24,6 +24,7 @@ public class CannonShot : MonoBehaviour
         {
             print("Shot hit object. Destroying shot.");
             Instantiate(smoke, this.transform.position, this.transform.rotation);
+            collision.gameObject.SendMessage("ApplyDamage", 5, SendMessageOptions.DontRequireReceiver);
             Destroy(this.gameObject);
         }
     }
