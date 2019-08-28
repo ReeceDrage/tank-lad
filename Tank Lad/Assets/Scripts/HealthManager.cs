@@ -13,6 +13,11 @@ public class HealthManager : MonoBehaviour
         if (actorHealth <= 0)
         {
             Destroy(this.gameObject);
+            this.SendMessage("ApplyDeath");
+        }
+        else
+        {
+            this.SendMessage("ApplyHit");
         }
     }
 }
