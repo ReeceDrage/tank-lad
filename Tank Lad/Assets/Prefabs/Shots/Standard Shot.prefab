@@ -70,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 694a435aa23903842986328d220c7cd0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotVelocity: 15
+  smoke: {fileID: 2712412517783839762, guid: 06bd1cb6122f52f41a7f22e8efd1b57e, type: 3}
   mask:
     serializedVersion: 2
     m_Bits: 0
