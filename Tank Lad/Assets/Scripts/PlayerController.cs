@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float playerMoveSpeed = 2f;
 
     // Private variables
+    private CharacterController2D controller;
     private float playerTurningSpeed = 10f;
     private GameObject tankBaseObject;
     private GameObject tankTurretObject;
@@ -20,7 +21,8 @@ public class PlayerController : MonoBehaviour
         tankBaseObject = transform.Find("Tank Base").gameObject;
         tankTurretObject = transform.Find("Tank Turret").gameObject;
 
-        // Get reference to camera component of the main camera
+        // Get component references
+        controller = this.GetComponent<CharacterController2D>();
         camera = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
@@ -52,7 +54,7 @@ public class PlayerController : MonoBehaviour
         adjustedMovement *= playerMoveSpeed;
         adjustedMovement *= Time.deltaTime;
 
-        transform.Translate(adjustedMovement);
+        controller.Move(adjustedMovement);
     }
 
     private void RotateTankBase(Vector3 movement)
