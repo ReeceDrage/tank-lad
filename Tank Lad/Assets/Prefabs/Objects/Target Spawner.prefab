@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoints: []
-  target: {fileID: 3266713699775538405, guid: c79d91fa481c91b4a80e0f3ccc6f3954, type: 3}
+  target: {fileID: 8133675580214807061, guid: df34cf632ef49f74ebbc8f49dd62cab6, type: 3}
 --- !u!1 &3586766982770291388
 GameObject:
   m_ObjectHideFlags: 0

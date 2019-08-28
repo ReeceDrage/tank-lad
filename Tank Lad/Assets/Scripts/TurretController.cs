@@ -11,7 +11,7 @@ public class TurretController : MonoBehaviour
 
     private GameObject player;
     private GameObject firingPoint;
-    private bool canShoot = true;
+    private bool canShoot = false;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +40,8 @@ public class TurretController : MonoBehaviour
 
     private void Shoot()
     {
+        StartCoroutine(ResetShot());
+
         if (canShoot == true)
         {
             // Create shot object with the current rotation of the turret. Set the mask property to be this layer mask so it doesn't collide with this object
@@ -48,7 +50,6 @@ public class TurretController : MonoBehaviour
 
             // Prevents repeated shots
             canShoot = false;
-            StartCoroutine(ResetShot());
         }
     }
 

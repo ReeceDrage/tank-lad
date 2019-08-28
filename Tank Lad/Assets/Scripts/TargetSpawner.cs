@@ -31,7 +31,7 @@ public class TargetSpawner : MonoBehaviour
             List<GameObject> emptyPoints = new List<GameObject>();
             int randomPoint;
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(8f);
 
             foreach(GameObject s in spawnPoints)
             {
