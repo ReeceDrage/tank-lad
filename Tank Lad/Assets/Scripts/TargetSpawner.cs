@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+
 using UnityEngine;
 
 public class TargetSpawner : MonoBehaviour
@@ -26,13 +28,23 @@ public class TargetSpawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(5f);
+            List<GameObject> emptyPoints = new List<GameObject>();
+            int randomPoint;
+
+            yield return new WaitForSeconds(2f);
+
             foreach(GameObject s in spawnPoints)
             {
                 if (s.transform.childCount == 0)
                 {
-                    Instantiate(target, s.transform);
+                    emptyPoints.Add(s);
                 }
+            }
+
+            if (emptyPoints.Count > 0)
+            {
+                randomPoint = Random.Range(0, emptyPoints.Count);
+                Instantiate(target, emptyPoints.ElementAt(randomPoint).transform);
             }
         }
     }
