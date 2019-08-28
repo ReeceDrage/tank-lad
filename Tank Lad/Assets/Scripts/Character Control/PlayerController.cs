@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     // Inspector-visible variables
     [SerializeField] private float playerMoveSpeed = 2f;
     [SerializeField] private GameObject shot;
+    [SerializeField] private float timeBetweenShots = 0.5f;
 
     // Private variables
     private CharacterController2D controller;
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private GameObject tankTurretObject;
     private GameObject tankFiringPoint;
     private Camera camera;
+    private bool canShoot = true;
 
     // Start is called before the first frame update
     void Start()
@@ -95,10 +97,25 @@ public class PlayerController : MonoBehaviour
 
     private void CheckIfShooting()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && canShoot == true)
         {
+            // Create shot object with the current rotation of the turret. Set the mask property to be this layer mask so it doesn't collide with this object
             GameObject shotFired = Instantiate(shot, tankFiringPoint.transform.position, tankTurretObject.transform.rotation);
             shotFired.GetComponent<CannonShot>().mask = this.gameObject.layer;
+
+            // Prevents repeated shots
+            canShoot = false;
+            StartCoroutine(ResetShot());
         }
+    }
+
+    /// <summary>
+    /// Resets the canShoot boolean to the initial true value. Allows for shot spacing.
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator ResetShot()
+    {
+        yield return new WaitForSeconds(timeBetweenShots);
+        canShoot = true;
     }
 }

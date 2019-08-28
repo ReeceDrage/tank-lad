@@ -1345,6 +1345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMoveSpeed: 2
   shot: {fileID: 2517453191142070273, guid: 106272354b47cbe49a4a54981e287acc, type: 3}
+  timeBetweenShots: 0.5
 --- !u!61 &1714921116
 BoxCollider2D:
   m_ObjectHideFlags: 0
